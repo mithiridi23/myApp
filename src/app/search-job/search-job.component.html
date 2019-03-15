@@ -1,0 +1,27 @@
+<div class="row" style="margin:20px">
+  <div class="col-xs-12">
+    <div class="row">
+        <div class="col-xs-4">
+          <label>Select Experience</label><br>
+                <select name="someName" required value="" (change)="getSelection()" [(ngModel)]="selectedValue">
+                    <option *ngFor="let key of selectExp"  [value]="key.value">{{ key.label }}</option>
+                 </select>
+          </div>
+                <div class="col-xs-4">
+                  <label>Location</label><br>
+                  <input type="text" required value=" " #mySearch [(ngModel)]="location" />
+                </div>
+                <div class="col-xs-4" style="padding:15px">
+                  <button [disabled]="!((!selectedValue) || (!location)) &&
+                  ((!location) || (!selectedValue))" class="btn btn-primary" (click)="onSearch($event,mySearch,selectedValue)">
+                  Search
+                </button>
+                </div>
+    </div>
+
+    <div class="col-xs-12">
+        <app-search-result [selectLoc]="location" [selectedExp]="selectedValue" [myarray]="jobsList" *ngIf="showChild===true"></app-search-result>
+    </div>
+    
+  </div>
+</div>
